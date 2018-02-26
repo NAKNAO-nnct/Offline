@@ -1,0 +1,100 @@
+\documentclass{jsarticle}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{url}
+\usepackage{ulem} 
+\usepackage{listings} 
+\title{pythonで始めるWebシステム開発のススメ}
+
+\author{情報工学科4年　中野雄貴}
+\begin{document}
+\maketitle
+\section{はじめに}
+初めまして，おそらく進級して4年生になっているであろう情報工学科の中野雄貴です．プログラミングはあまり得意ではありません．単位を落としかけたこともあります．また，ゲームをしないのでゲーム開発などは行えませんがJokenにはゲームを作れる先輩もいっぱいいるのでぜひ来てください．\newline
+　ちなみに，今回はWindowsでもmacOSでもLinuxでも開発が行えるソフトを使用しています．
+
+\subsection{Ｑ＆Ａ}
+\subsubsection{Pythonってなに？}
+Pythoっていうのは少ないコードでわかりやすくかけるすっごいプログラミング言語です．情報工学科の人は3年生の情報工学実験でも使います．\newline
+　あまり詳しいことは書きませんが，もっと知りたいという方はGoogle\footnote{Yahoo!JAPANでもBingでも構いません}で検索してください．
+
+\subsubsection{システム開発じゃなくてゲームが作りたい}
+すみませんが他のツヨイツヨイ先輩が作っているのでそちらをみてください．
+
+\section{準備をしよう!}
+\subsection{VisualStadioCodeのインストール}
+VisualStadioCodeはプログラムを書き書きするためのソフト（テキストエディタ）です．Windowsのメモ帳じゃダメなの？って思ったあなた，それは危険なサインです．今すぐ使用するのをやめましょう（\sout{文字コードとかが普通じゃないので} プログラムを記述するのに向いてないのです）\newline
+　VisualStadioCodeのインストールに関してはここで書きません．なぜならインストールに関する記事なら初心者でも良くわかる方法などが書いているからです．一応参考になるリンクを貼っておきます．\newline
+　参考リンク：\url{https://qiita.com/katsu_suzuki/items/dd688c88f53f24707169} 
+
+\subsection{Pythonをインストール}
+Pythonのインストールに関してはあまりここで書きません．なぜならインストールに関する記事なら初心者でも良くわかる方法などが書いているからです．\newline
+　参考リンク（Windows10）：\url{https://qiita.com/kituneazami/items/4d2db7726bdc0eb37f2b} \newline
+　パスの通し方：\url{https://www.pythonweb.jp/install/} 
+
+
+\section{さぁプログラムを始めようか} 
+まず，作ったプログラムファイルを保存するディレクトリ（フォルダ）を作成してください．
+
+\subsection{bottle.pyをダウンロード} 
+\url{https://raw.githubusercontent.com/bottlepy/bottle/master/bottle.py}にアクセスして\newline bottle.py という名前で保存してください．
+
+\subsection{プログラムを書こう} 
+index.py というファイル作成してください．そこにPythonを書いていきます．
+\subsubsection{Hello Worldを表示させる} 
+まずはなにも言わずに下のプログラムを書いてください．
+\begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single]
+from bottle import *  
+
+@route('/')
+def index():
+	return 'Hello World'
+
+run(host='localhost', port=8080)
+\end{lstlisting}
+書けましたか？書けたら実行してみてください．実行の仕方がわからなかったら検索してね（）\newline
+　実行してエラーが出なければブラウザで\url{http://localhost:8080/}にアクセスしてください．どうですか？画面にHello Worldと表示されましたか？\newline
+
+\subsubsection{ちょっとした解説}
+\url{@route('/')}というのは\url{http://localhost:8080/}にアクセスした時のことです．そしてdef index():に\url{http://localhost:8080}にアクセスした時に行う処理について書いています．\url{return 'Hello World'}はHello Worldと画面に表示するものですね．
+
+\subsubsection{発展させる}
+またなにも言わずに下のプログラムを書いてください．
+\begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single]
+from bottle import *  
+
+@route('/')
+def index():
+	return 'Hello World'
+
+@route('/hello/<name>')
+def helloName(name):
+	return 'Hello World {}'.format(name)
+
+run(host='localhost', port=8080)
+\end{lstlisting}
+実行して今度は\url{http://localhost:8080/hello/'name'}にアクセスしてください．ここで'name'を自由に書き換えてみてください．すると画面にHello World 'name' と出ます．
+
+\subsubsection{ちょっとした解説}
+例えば\url{http://localhost:8080/hello/WATASHI}にアクセスした時，「WATASHI」という文字列を取得し画面に表示します．
+
+
+\subsection{システムについて}
+一言で言うとあとはPythonがかければWebシステムは作れます．「プログラミング初心者です!」「Pythonよくわかりません!」と言う方はどうぞJokenに一度足を運んでください．また，プログラミングはググればなんとかなります．\footnote{大体のことは本当になんとなります．難しいことはありません．プログラマはGoogle無しでは生きていけません．} 
+
+\subsection{設計をしよう}
+\subsubsection{なにを作るか決めよう}
+今更ですがWebシステムの開発を行う上で重要なのはどのようなWebシステムを作るかです．例えば，TwitterもどきのSNSを作ることもできます．
+
+\subsubsection{仕様書を書こう}
+どんなものでも構いません．必要なのは『どんなページを作るか』『どんなレイアウトにするか』『なにをするためのものか』です．脳死で考えてもうまくいきません．\footnote{強い人は脳死でもある程度かけます}  
+
+\subsubsection{Taskを分けよう}
+一気に全部作るのはとても難しいです．開発は複数のtaskに分けてこそ成功します．例えばTwitterもどきのSNSサイトを作る時，『入力した文字をサーバーに送信する』『ユーザーの管理』『新規登録処理』『画像をアップロードする』などの複数の項目(task)に分割します．そして一つずつ作っていき最後に組み立てます．慣れないうちはもっと細かく分割しても問題ありません．また，分割することによって作業の進捗が一目でわかりモチベーションを保つこともできます．\footnote{あくまで個人の感想です}
+
+\subsection{公開しよう}
+作った成果物はGithubなどを通じてソースコードを公開してみましょう．強い人がたまにアドバイスしてくれるかもしれませんし，先輩にコードレビュー\footnote{ソースコードを見てもらって評価してもらうこと}してもらいやすいです．\newline
+また，実際にシステムを動かして友人や家族に使ってみてもらってください．ユーザー目線でのアドバイスがもらえます．アドバイスをもらったらそれをシステムに組み込んでと言う風にシステムを改良していきもっと良いものを作ることができます．
+
+\section{最後に}
+つまらない記事だったと思います．日本語が変なところもたくさんあります．何か質問があれば私のTwitter(@iTechNKN)やJokenのTwitter(@joken\_ official)や部室まで!
+\end{document}
